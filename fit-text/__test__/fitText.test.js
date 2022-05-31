@@ -1,0 +1,33 @@
+const formatTextInLines = require('../fitText');
+const str = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+Aliquam nec consectetur risus. Cras vel urna a tellus dapibus consequat. 
+Duis bibendum tincidunt viverra. Phasellus dictum efficitur sem quis porttitor. 
+Mauris luctus auctor diam id ultrices. Praesent laoreet in enim ut placerat. 
+Praesent a facilisis turpis.`;
+describe('formatTextInLines', () => {
+  test('should return string', () => {
+    expect(typeof formatTextInLines()).toBe('string');
+  });
+  test(`should return string INVALID INPUT if text argument is missing
+     or has length less than 15 characters`, () => {
+    expect(formatTextInLines()).toBe('Invalid input');
+    expect(formatTextInLines('Lorem')).toBe('Invalid input');
+    expect(formatTextInLines('Northcoders Bootcamp', 14)).toBe('Invalid input');
+  });
+  test('should divide the given text into lines using newline characters, not exceeding the characters per row limit', () => {
+    expect(formatTextInLines('Northcoders Coding Bootcamp', 15)).toBe(
+      'Northcoders\nCoding Bootcamp'
+    );
+    expect(formatTextInLines('Northcoders Coding Bootcamp', 20)).toBe(
+      'Northcoders Coding\nBootcamp'
+    );
+    expect.only(formatTextInLines(str, 50))
+      .toBe(`Lorem ipsum dolor sit amet, consectetur adipiscing\n
+    elit. Aliquam nec consectetur risus. Cras vel urna\n
+    a tellus dapibus consequat. Duis bibendum\n
+    tincidunt viverra. Phasellus dictum efficitur sem\n
+    quis porttitor. Mauris luctus auctor diam id\n 
+    ultrices. Praesent laoreet in enim ut placerat.\n
+    Praesent a facilisis turpis.`);
+  });
+});
