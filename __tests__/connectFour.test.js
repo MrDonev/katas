@@ -4,9 +4,10 @@ describe('findConnectFourWinner', () => {
   test('should return string', () => {
     expect(typeof findConnectFourWinner()).toBe('string');
   });
-  test('should return false if no argument is passed or its an empty array', () => {
-    expect(findConnectFourWinner()).toBe('false');
-    expect(findConnectFourWinner([])).toBe('false');
+  test('should return false if no argument is passed or its an empty array or a different size matrix', () => {
+    expect(findConnectFourWinner()).toBe('Please provide a 7 * 6 matrix');
+    expect(findConnectFourWinner([])).toBe('Please provide a 7 * 6 matrix');
+    expect(findConnectFourWinner([[null,null],[null,null],[null,null],[null,null],[null,null],[null,null]]))
   });
   test('should return false if the is no winner', () => {
     const ma3x = [

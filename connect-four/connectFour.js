@@ -1,5 +1,9 @@
 const findConnectFourWinner = (matrix) => {
-  if (matrix === undefined || matrix.length === 0) return 'false';
+  if (matrix === undefined || matrix.length === 0 || matrix.length !== 6)
+    return 'Please provide a 7 * 6 matrix';
+  for (let row of matrix) {
+    if (row.length !== 7) return 'Please provide a 7 * 6 matrix';
+  }
   const matrixArr = [];
   matrix.forEach((element) => matrixArr.push([...element]));
   //horizontal check
@@ -27,28 +31,36 @@ const findConnectFourWinner = (matrix) => {
   }
   //diagonal check
   //left to right
-  for (let row = 0; row < matrixArr.length-3; row++) {
+  for (let row = 0; row < matrixArr.length - 3; row++) {
     const diagonal = [];
-    for (let col = 0; col < matrixArr[row].length -3; col++) {
+    for (let col = 0; col < matrixArr[row].length - 3; col++) {
       const element = matrixArr[row][col];
-      if ( element ==='x' || element ==='o' &&
-        element == matrix[row + 1][col + 1] &&
-        element == matrix[row + 2][col + 2] &&
-        element == matrix[row + 3][col + 3]
+      if (
+        element === 'x' ||
+        (element === 'o' &&
+          element == matrix[row + 1][col + 1] &&
+          element == matrix[row + 2][col + 2] &&
+          element == matrix[row + 3][col + 3])
       ) {
         return element;
       }
     }
   }
   //right to left
-  for (let row = 0; row < matrixArr.length-3; row++) {
+  for (let row = 0; row < matrixArr.length - 3; row++) {
     const diagonal = [];
-    for (let col = matrixArr[row].length -3; col < matrixArr[row].length; col++) {
+    for (
+      let col = matrixArr[row].length - 3;
+      col < matrixArr[row].length;
+      col++
+    ) {
       const element = matrixArr[row][col];
-      if ( element ==='x' || element ==='o' &&
-        element == matrix[row + 1][col + 1] &&
-        element == matrix[row + 2][col + 2] &&
-        element == matrix[row + 3][col + 3]
+      if (
+        element === 'x' ||
+        (element === 'o' &&
+          element == matrix[row + 1][col + 1] &&
+          element == matrix[row + 2][col + 2] &&
+          element == matrix[row + 3][col + 3])
       ) {
         return element;
       }
