@@ -9,9 +9,9 @@ function formatTextInLines(text, limit) {
       if (formattedText.length + wordsArray[word].length <= limit) {
         formattedText += wordsArray[word] +' ';
         word++;
-        console.dir(formattedText)
+       
       } else {
-            console.dir(formattedText.trim() + '\n')
+          
         finalArr.push(formattedText.trim() + '\n');
         formattedText = '';
       }
@@ -19,8 +19,6 @@ function formatTextInLines(text, limit) {
           finalArr.push(formattedText.trim())
       }
     }
-    // console.log(finalArr)
-     console.dir(finalArr.join(''))
   return (finalArr.join(''))
 }
 
